@@ -2,7 +2,8 @@
   "name": "@freedomsex/service-worker",
   "version": "0.0.1",
   "description": "abstract service layer",
-  "main": "index.js",
+  "main": "src/worker.js",
+  "module": "src/worker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
