@@ -1,0 +1,27 @@
+{
+  "name": "@freedomsex/service-worker",
+  "version": "0.0.1",
+  "description": "abstract service layer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freedomsex/service-worker.git"
+  },
+  "keywords": [
+    "service",
+    "worker"
+  ],
+  "author": "tebaly",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/freedomsex/service-worker/issues"
+  },
+  "homepage": "https://github.com/freedomsex/service-worker#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "lscache": "^1.3.0"
+  }
+}
