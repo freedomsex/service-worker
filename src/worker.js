@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import lscache from 'lscache';
 
 export default class Worker {
   constructor(config) {
@@ -8,10 +7,7 @@ export default class Worker {
     this.$store = {};
     this.$session = {};
     this.$modules = {};
-    this.$cache = lscache;
-    this.defaults = {
-      expire: 86400 * 30 * 3,
-    };
+    this.$cache = {};
     this.tasks = config.tasks || {};
     // this.$modules = config.modules;
     this.loadModules(config.modules);
@@ -32,13 +28,12 @@ export default class Worker {
     return this.$store;
   }
 
-  // loadModules(modules) {
-  //   _.each(modules, (module, namespace) => {
-  //     _.each(module.tasks, (task, name) => {
-  //       this.tasks[`${namespace}/${name}`] = task;
-  //     });
-  //   });
-  // }
+  cache(cache) {
+    if (cache) {
+      this.$cache = cache;
+    }
+    return this.$cache;
+  } 
 
   moduleInfo(name) {
     const parts = name.split('/');
@@ -53,34 +48,6 @@ export default class Worker {
     });
   }
 
-  saveCache(key, value, expire) {
-    return this.$cache.set(key, value, expire || this.defaults.expire);
-  }
-
-  loadCache(key, defaults) {
-    return this.$cache.get(key) || defaults || null;
-  }
-
-  flush(key, expire, exclude) {
-    const data = this.$store.state[key];
-    this.save(key, data, expire, exclude);
-  }
-
-  load(key, defaults) {
-    const data = this.loadCache(key, defaults);
-    this.$store.commit(key, data);
-  }
-
-  save(key, value, expire, exclude) {
-    this.$store.commit(key, value);
-    let data = value;
-    if (_.isObject(value) && exclude) {
-      data = _.omit(value, exclude);
-    }
-    this.saveCache(key, data, expire);
-  }
-
-
   session(key) {
     this.$session[key] = true;
   }
@@ -90,6 +57,7 @@ export default class Worker {
       run: this.run,
       api: this.$api,
       store: this.$store,
+      cache: this.$cache,
       root: this,
     };
   }
