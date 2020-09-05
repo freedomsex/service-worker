@@ -8,6 +8,7 @@ export default class Worker {
     this.$session = {};
     this.$modules = {};
     this.$cache = {};
+    this.$sse = {};
     this.tasks = config.tasks || {};
     // this.$modules = config.modules;
     this.loadModules(config.modules);
@@ -26,6 +27,13 @@ export default class Worker {
       this.$store = store;
     }
     return this.$store;
+  }
+
+  sse(sse) {
+    if (sse) {
+      this.$sse = sse;
+    }
+    return this.$sse;
   }
 
   cache(cache) {
@@ -58,6 +66,7 @@ export default class Worker {
       api: this.$api,
       store: this.$store,
       cache: this.$cache,
+      sse: this.$sse,
       root: this,
     };
   }
