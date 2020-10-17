@@ -13,18 +13,22 @@ export default class Worker {
     this.tasks = config.tasks || {};
     // this.$modules = config.modules;
     this.autoLoad(config);
-    this.loadModules(config);
+    this.loadModules(config.modules);
     // this.created();
   }
   
   autoLoad({directory, options}) {
-    const modules = this.importModules(directory, options);
+    const modules = importModules(directory, options);
     this.loadModules(modules);
   }
 
-  loadModules({modules}) {
-    _.each(modules, (module, namespace) => {
-      this.$modules[namespace] = module;
+  addService(service, namespace) {
+    this.$modules[namespace] = service;
+  }
+
+  loadModules(modules) {
+    _.each(modules, (service, namespace) => {
+      this.addService(service, namespace);
     });
   }
   
