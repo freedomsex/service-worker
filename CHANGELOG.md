@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/freedomsex/service-worker/compare/v0.1.2...v0.1.3) (2020-10-17)
+
+
+### Features
+
+* autoload ([05cd2f7](https://github.com/freedomsex/service-worker/commit/05cd2f7e044af95b0faad118facd4ac7dd6aa3e7))
+
 ### [0.1.2](https://github.com/freedomsex/service-worker/compare/v0.1.1...v0.1.2) (2020-09-05)
 
 
