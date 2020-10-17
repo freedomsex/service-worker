@@ -21,8 +21,9 @@
     "url": "https://github.com/freedomsex/service-worker/issues"
   },
   "homepage": "https://github.com/freedomsex/service-worker#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "lscache": "^1.3.0"
-  }
+  "dependencies": {
+    "import-modules": "^2.0.0",
+    "underscore": "^1.11.0"
+  },
+  "devDependencies": {}
 }

@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import importModules from 'import-modules';
 
 export default class Worker {
   constructor(config) {
@@ -11,10 +12,22 @@ export default class Worker {
     this.$sse = {};
     this.tasks = config.tasks || {};
     // this.$modules = config.modules;
-    this.loadModules(config.modules);
+    this.autoLoad(config);
+    this.loadModules(config);
     // this.created();
   }
+  
+  autoLoad({directory, options}) {
+    const modules = this.importModules(directory, options);
+    this.loadModules(modules);
+  }
 
+  loadModules({modules}) {
+    _.each(modules, (module, namespace) => {
+      this.$modules[namespace] = module;
+    });
+  }
+  
   api(api) {
     if (api) {
       this.$api = api;
@@ -48,12 +61,6 @@ export default class Worker {
     const task = parts.pop();
     const namespace = parts.join('/');
     return {namespace, task};
-  }
-
-  loadModules(modules) {
-    _.each(modules, (module, namespace) => {
-      this.$modules[namespace] = module;
-    });
   }
 
   session(key) {
