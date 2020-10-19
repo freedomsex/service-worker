@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import importModules from 'import-modules';
+// import importModules from 'import-modules';
 
 export default class Worker {
   constructor(config) {
@@ -18,8 +18,8 @@ export default class Worker {
   }
   
   autoLoad({directory, options}) {
-    const modules = importModules(directory, options);
-    this.loadModules(modules);
+    // const modules = importModules(directory, options);
+    // this.loadModules(modules);
   }
 
   addService(service, namespace) {

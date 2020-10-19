@@ -1,6 +1,6 @@
 {
   "name": "@freedomsex/service-worker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "abstract service layer",
   "main": "src/worker.js",
   "module": "src/worker.js",
