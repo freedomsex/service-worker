@@ -73,7 +73,7 @@ export default class Worker {
 
   context() {
     return {
-      run: this.run,
+      run: this.run.bind(this),
       api: this.$api,
       store: this.$store,
       cache: this.$cache,
