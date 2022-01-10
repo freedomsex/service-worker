@@ -93,8 +93,12 @@ export default class Worker {
   runModule(name, args) {
     const {namespace, task} = this.moduleInfo(name);
     const module = this.$modules[namespace];
-    const target = module.tasks[task];
-    return this.runTask(module, target, args);
+    if (module) {
+      const target = module.tasks[task];
+      return this.runTask(module, target, args);
+    } else {
+      console.error('No module found named: ' + name);
+    }
   }
 
   run(task, args) {
