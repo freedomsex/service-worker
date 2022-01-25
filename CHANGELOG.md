@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/freedomsex/service-worker/compare/v0.1.6...v0.1.7) (2022-01-25)
+
+
+### Bug Fixes
+
+* inject ([ca51781](https://github.com/freedomsex/service-worker/commit/ca517815d089a575ebb7e345593daafe77fc5675))
+
 ### [0.1.6](https://github.com/freedomsex/service-worker/compare/v0.1.5...v0.1.6) (2020-11-06)
 
 
