@@ -4,6 +4,7 @@ import _ from 'underscore';
 export default class Worker {
   constructor(config) {
     // super();
+    this.$context = {};
     this.$api = {};
     this.$store = {};
     this.$session = {};
@@ -31,11 +32,16 @@ export default class Worker {
       this.addService(service, namespace);
     });
   }
+
+  inject(name, plugin) {
+    this.$context[name] = plugin;
+  }
   
   api(api) {
     if (api) {
       this.$api = api;
     }
+    this.inject('api', this.$api);
     return this.$api;
   }
 
@@ -43,6 +49,7 @@ export default class Worker {
     if (store) {
       this.$store = store;
     }
+    this.inject('store', this.$store);
     return this.$store;
   }
 
@@ -50,6 +57,7 @@ export default class Worker {
     if (sse) {
       this.$sse = sse;
     }
+    this.inject('sse', this.$sse);
     return this.$sse;
   }
 
@@ -57,6 +65,7 @@ export default class Worker {
     if (cache) {
       this.$cache = cache;
     }
+    this.inject('cache', this.$cache);
     return this.$cache;
   } 
 
@@ -72,14 +81,9 @@ export default class Worker {
   }
 
   context() {
-    return {
-      run: this.run.bind(this),
-      api: this.$api,
-      store: this.$store,
-      cache: this.$cache,
-      sse: this.$sse,
-      root: this,
-    };
+    this.$context.run = this.run.bind(this);
+    this.$context.root = this;
+    return this.$context;
   }
 
   isModule(name) {
